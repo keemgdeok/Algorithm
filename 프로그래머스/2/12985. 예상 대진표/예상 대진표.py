@@ -3,11 +3,7 @@ import math
 def solution(n,a,b):
     ans = 0
 
-    ln = int(math.log(n,2))
-
-    while True:# n>=1:
-        # n//=2
-        
+    while True:
         if abs(a-b)==1 and (a+b+1)%4==0:
             return ans + 1
         else:
