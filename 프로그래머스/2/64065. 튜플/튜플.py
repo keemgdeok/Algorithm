@@ -2,8 +2,8 @@ def solution(s):
     ans = []
     s= s.replace('{', '')
     s= s.replace('}', '')
-    
     digit=''
+    
     res = []
     for i in list(''.join(s)):
         if i != ',':
@@ -12,7 +12,6 @@ def solution(s):
             res.append(int(digit))
             digit=''
     res.append(int(digit))
-    # print(res)
     
     count = dict()
     for r in res:
