@@ -7,10 +7,9 @@ def solution(prices):
         curr = prices[i]
         time = 0
         for j in range(i+1, n):
-            if curr > prices[j]:
-                time+=1
-                break
             time+=1
+            if curr > prices[j]:
+                break
         ans.append(time)
     
     return ans
