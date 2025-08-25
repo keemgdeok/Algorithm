@@ -5,7 +5,6 @@ def solution(arrayA, arrayB):
     # find 철수&영희의 최대공약수
     A = findGCD(arrayA)
     B = findGCD(arrayB)
-    print(A, B)
 
     if A>1:
         for b in arrayB:
