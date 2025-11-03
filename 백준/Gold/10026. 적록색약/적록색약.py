@@ -28,7 +28,7 @@ def bfs(picture, visited, i, j):
                 visited[ny][nx] = True
     
 yes, no = 0, 0
-# 적록색약 O
+# 적록색약 X
 visited = [[False]*N for _ in range(N)]
 for i in range(N):
     for j in range(N):
@@ -38,7 +38,7 @@ for i in range(N):
         if picture[i][j] == "R":
             picture[i][j] = "G"
 
-# 적록색약 X
+# 적록색약 O
 visited = [[False]*N for _ in range(N)]
 for i in range(N):
     for j in range(N):
