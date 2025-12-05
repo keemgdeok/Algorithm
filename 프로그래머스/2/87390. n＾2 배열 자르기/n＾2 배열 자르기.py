@@ -6,5 +6,4 @@ def solution(n, left, right):
         col = i%n
         ans.append(max(row, col) + 1)
     
-    
     return ans
