@@ -8,6 +8,3 @@ left join
     on p.ID = c.parent_id
 group by
     p.ID
-    
-
-
