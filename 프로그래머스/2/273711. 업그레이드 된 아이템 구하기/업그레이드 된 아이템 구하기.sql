@@ -1,19 +1,21 @@
 select
-    info.ITEM_ID,
-    info.ITEM_NAME,
-    info.RARITY
+    info.item_id as ITEM_ID,
+    info.item_name as ITEM_NAME,
+    info.rarity as RARITY
 from
-    ITEM_INFO as info
+    ITEM_INFO info
 join
-    ITEM_TREE as tree
+    ITEM_TREE tree
     on info.item_id = tree.item_id
 where
-    parent_item_id in (select
-                        item_id
-                       from
-                        item_info
-                       where
-                        rarity = 'RARE'
-                      )
+    tree.parent_item_id is not null
+    and parent_item_id in (
+        select
+            item_id
+        from
+            ITEM_INFO
+        where
+            rarity = "RARE"
+    )
 order by
-    info.item_id desc
+    ITEM_ID desc
