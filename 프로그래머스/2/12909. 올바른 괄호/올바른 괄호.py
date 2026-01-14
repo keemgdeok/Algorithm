@@ -1,16 +1,13 @@
 def solution(s):
-    ans = True
-    stack=[]
-    for input in s:
-        if input == "(":
-            stack.append(input)
-        else:
-            if len(stack)<1:
-                return False
+    stack = []
+    for i in range(len(s)):
+        if s[i] == "(":
+            stack.append(s[i])
+        elif s[i] == ")":
+            if stack:
+                stack.pop()
             else:
-                stack.pop(-1)
-                
-    if len(stack) == 0: ans = True
-    else: ans = False
-
-    return ans
+                return False
+    if not stack:
+        return True
+    return False
