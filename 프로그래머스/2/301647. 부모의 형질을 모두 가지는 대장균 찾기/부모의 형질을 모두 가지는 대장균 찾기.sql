@@ -1,13 +1,13 @@
 select
-    c.ID,
-    c.GENOTYPE,
-    p.genotype as PARENT_GENOTYPE
+    b.id as ID,
+    b.genotype as GENOTYPE,
+    a.genotype as PARENT_GENOTYPE
 from
-    ECOLI_DATA as p
+    ECOLI_DATA a
 join
-    ECOLI_DATA as c
-    on p.id = c.parent_id
+    ECOLI_DATA b
+    on a.id = b.parent_id
 where
-    (p.genotype & c.genotype) = p.genotype
+    (a.genotype & b.genotype) = a.genotype
 order by
-    c.ID asc
+    b.id asc
