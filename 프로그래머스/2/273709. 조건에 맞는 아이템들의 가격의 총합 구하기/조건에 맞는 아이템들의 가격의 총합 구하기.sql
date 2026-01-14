@@ -1,6 +1,6 @@
 select
     sum(price) as TOTAL_PRICE
 from
-    item_info
+    ITEM_INFO
 where
-    rarity = 'LEGEND'
+    rarity = "LEGEND"
