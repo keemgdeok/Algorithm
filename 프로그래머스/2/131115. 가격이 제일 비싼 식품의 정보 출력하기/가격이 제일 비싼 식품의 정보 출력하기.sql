@@ -1,12 +1,19 @@
 select
-    product_id as PRODUCT_ID,
-    product_name as PRODUCT_NAME,
-    product_cd as PRODUCT_CD,
-    category as CATEGORY,
-    price as PRICE
+    fp.product_id as PRODUCT_ID,
+    fp.product_name as PRODUCT_NAME,
+    fp.product_cd as PRODUCT_CD,
+    fp.category as CATEGORY,
+    fp.price as PRICE
 from
-    food_product
+    FOOD_PRODUCT fp
 where
-    price = (
-            select max(price)
-            from food_product)
+    (fp.product_id, fp.price) = (
+        select
+            product_id,
+            price
+        from 
+            FOOD_PRODUCT
+        order by
+            price desc
+        limit 1
+    )
