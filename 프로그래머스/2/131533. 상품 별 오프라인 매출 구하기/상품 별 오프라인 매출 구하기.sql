@@ -1,19 +1,20 @@
 select
-    a.product_code as PRODUCT_CODE,
-    a.price*b.sales_amount as SALES
+    p.product_code as PRODUCT_CODE,
+    (p.price * s.total_amount) as SALES
 from
-    product as a
+    product p
 join
     (
-        select 
+        select
             product_id,
-            sum(sales_amount) as sales_amount
-        from 
+            sum(sales_amount) as total_amount
+        from
             offline_sale
         group by
             product_id
-    ) as b
-    on a.product_id = b.product_id
+    ) s
+    on p.product_id = s.product_id
 order by
-    sales desc,
-    a.product_code asc
+    SALES desc,
+    PRODUCT_CODE asc
+    
