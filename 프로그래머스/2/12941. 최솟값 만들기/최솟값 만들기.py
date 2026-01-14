@@ -1,10 +1,8 @@
 def solution(A,B):
-    ans = 0
-    A = sorted(A)
-    B = sorted(B, reverse=True)
+    answer = 0
+    A.sort()
+    B.sort(reverse=True)
     
-    for _ in range(len(A)):
-        ans += A.pop() * B.pop()
-    
-
-    return ans
+    for i in range(len(A)):
+        answer += A[i] * B[i]
+    return answer
