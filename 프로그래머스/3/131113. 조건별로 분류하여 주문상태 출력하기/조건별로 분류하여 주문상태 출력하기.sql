@@ -1,7 +1,7 @@
 select
     ORDER_ID,
     PRODUCT_ID,
-    date_format(out_date, '%Y-%m-%d') as OUT_DATE,
+    date_format(out_date, "%Y-%m-%d") as OUT_DATE,
     (case
         when out_date is null then "출고미정"
         when out_date <= '2022-05-01' then "출고완료"
@@ -11,4 +11,5 @@ select
 from
     FOOD_ORDER
 order by
-    order_id asc
+    ORDER_ID asc
+    
