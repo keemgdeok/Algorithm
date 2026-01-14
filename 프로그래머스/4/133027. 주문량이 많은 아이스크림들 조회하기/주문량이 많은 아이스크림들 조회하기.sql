@@ -1,19 +1,23 @@
 select
-    fh.flavor as FLAVOR
+    FLAVOR
 from
-    first_half as fh
-join
-    ( 
+    (
     select
-        flavor,
-        sum(total_order) as total_order
+        SHIPMENT_ID,
+        FLAVOR,
+        TOTAL_ORDER
+    from
+        first_half
+    union all
+    select
+        SHIPMENT_ID,
+        FLAVOR,
+        TOTAL_ORDER
     from
         july
-    group by
-        flavor
-    ) as jy
-    on fh.flavor = jy.flavor
+    ) a
+group by
+    flavor
 order by
-    fh.total_order + jy.total_order desc
-limit 3;
-    
+    sum(total_order) desc
+limit 3
