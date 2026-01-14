@@ -1,7 +1,4 @@
-def solution(s):    
-    s = list(map(str, s.split(" ")))
-    ans = []
-    for a in s:
-        ans.append(a.capitalize())
-        
-    return " ".join(ans)
+def solution(s):   
+    ans = list(map(str, s.split(" ")))
+
+    return " ".join(list(map(str.capitalize, ans)))
