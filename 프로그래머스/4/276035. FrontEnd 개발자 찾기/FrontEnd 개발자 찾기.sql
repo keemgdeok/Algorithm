@@ -1,16 +1,14 @@
-select 
-    distinct
-    dp.id as ID,
-    dp.email as EMAIL,
-    dp.first_name as FIRST_NAME,
-    dp.last_name as LAST_NAME
+select distinct
+    d.id as ID,
+    d.email as EMAIL,
+    d.first_name as FIRST_NAME,
+    d.last_name as LAST_NAME
 from
-    skillcodes as sc
+    skillcodes s
 join
-    developers as dp
-    on dp.skill_code & sc.code > 0
-where 
-    sc.category = "Front End"
+    developers d
+    on (s.code & d.skill_code) > 0 
+where
+    s.category = "Front End"
 order by
-    dp.id asc
-    
+    d.id asc
