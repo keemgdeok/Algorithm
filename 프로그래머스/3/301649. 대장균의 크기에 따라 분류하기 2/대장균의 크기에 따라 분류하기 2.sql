@@ -1,17 +1,19 @@
 select
     ID,
-    case
-        when n = 1 then "CRITICAL"
-        when n = 2 then "HIGH"
-        when n = 3 then "MEDIUM"
-        ELSE "LOW"
-    end as COLONY_NAME
+    (case
+        when n=1 then "CRITICAL"
+        when n=2 then "HIGH"
+        when n=3 then "MEDIUM"
+        else "LOW"
+     end
+    ) as COLONY_NAME
 from
     (
     select
-        ID,
+        id as ID,
         ntile(4) over (order by size_of_colony desc) as n
-    from ecoli_data
-    ) as ranked
+    from
+        ECOLI_DATA
+    ) ranked
 order by
-    id asc
+    ID asc
