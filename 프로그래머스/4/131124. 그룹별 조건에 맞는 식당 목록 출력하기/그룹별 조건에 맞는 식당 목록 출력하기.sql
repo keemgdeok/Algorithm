@@ -1,24 +1,24 @@
 select
-    prof.member_name as MEMBER_NAME,
-    rev.review_text as REVIEW_TEXT,
-    date_format(rev.review_date,'%Y-%m-%d') as REVIEW_DATE
+    p.member_name as MEMBER_NAME,
+    r.review_text as REVIEW_TEXT,
+    date_format(r.review_date, '%Y-%m-%d') as REVIEW_DATE
 from
-    member_profile as prof
+    member_profile p
 join
-    rest_review as rev
-    on prof.member_id = rev.member_id
+    rest_review r
+    on p.member_id = r.member_id
 where
-    rev.member_id = (
-                    select
-                        member_id
-                    from
-                        rest_review
-                    group by
-                        member_id
-                    order by
-                        count(*) desc
-                    limit 1
-                    )
+    r.member_id = (
+        select
+            member_id
+        from
+            rest_review
+        group by
+            member_id
+        order by
+            count(member_id) desc
+        limit 1
+    )
 order by
-    rev.review_date asc,
-    rev.review_text asc
+    REVIEW_DATE asc,
+    REVIEW_TEXT asc
