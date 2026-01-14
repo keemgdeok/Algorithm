@@ -2,9 +2,9 @@ select
     ins.name as NAME,
     ins.datetime as DATETIME
 from
-    animal_ins ins
+    ANIMAL_INS ins
 left join
-    animal_outs outs
+    ANIMAL_OUTS outs
     on ins.animal_id = outs.animal_id
 where
     outs.animal_id is null
