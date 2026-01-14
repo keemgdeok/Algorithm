@@ -1,21 +1,22 @@
 select
-    a.id,
-    b.fish_name,
-    a.length
+    info.id as ID,
+    name.fish_name as FISH_NAME,
+    info.length as LENGTH
 from
-    fish_info as a
-join 
-    fish_name_info as b
-    on a.fish_type = b.fish_type
+    FISH_INFO info
+join
+    FISH_NAME_INFO name
+    on info.fish_type = name.fish_type
 where
-    (a.fish_type, a.length) IN (
+    (info.fish_type, info.length) in (
         select
             fish_type,
             max(length)
         from
-            fish_info
+            FISH_INFO
         group by
             fish_type
     )
 order by
-    a.id asc
+    info.id asc
+    
