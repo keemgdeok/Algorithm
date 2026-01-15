@@ -1,27 +1,19 @@
-from collections import deque
-
 def solution(progresses, speeds):
-    ans = []
-    time = deque()
+    import math
+    remain = []
     for i in range(len(progresses)):
-        res = 100-progresses[i]
-        t = res // speeds[i]
-        if res%speeds[i]!=0:
-            t+=1
-        time.append(t)
-
- 
-    deploy=time.popleft()
-    task=1
-    while len(time)>0:
-        nextprog = time.popleft()
-        if deploy >= nextprog:
-            task+=1
+        remain.append(math.ceil((100-progresses[i])/speeds[i]))
+    
+    answer = []
+    max_day = remain[0]
+    num=1
+    for i in range(1,len(remain)):
+        if remain[i] <= max_day:
+            num+=1
         else:
-            deploy = nextprog
-            ans.append(task)
-            task=1       
-        
-        
-    ans.append(task)
-    return ans
+            answer.append(num)
+            max_day = remain[i]
+            num=1
+    answer.append(num)
+    
+    return answer
