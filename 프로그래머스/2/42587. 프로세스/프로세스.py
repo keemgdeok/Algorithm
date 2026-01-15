@@ -1,26 +1,15 @@
-from collections import deque
 
 def solution(priorities, location):
-    ans = 0
-    n = len(priorities)
-    taskq=deque()
-    for i in range(n):
-        taskq.append([priorities[i], i])
+    queue = [(i,p) for i,p in enumerate(priorities)]
     
+    answer = 0
     while True:
-        flag=0
-        proc = taskq.popleft()
-        for i in range(len(taskq)):
-            if proc[0] < taskq[i][0]:
-                taskq.append(proc)
-                flag=1
-                break
-                
-        if flag==1:
-            continue
+        cur = queue.pop(0)
+        if any(cur[1] < q[1] for q in queue):
+            queue.append(cur)
         else:
-            ans+=1
-        
-        if proc[1] == location:
-            return ans
-        
+            answer+=1
+            if location == cur[0]:
+                return answer
+    
+    return 0
